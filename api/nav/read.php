@@ -20,7 +20,7 @@ if ($num > 0) {
     $navData = array();
 
     if ($_SERVER['REQUEST_METHOD'] != 'GET') {
-        $returnData = msg(0, 404, 'Page not found');
+        $returnData = $nav->msg(0, 404, 'Page not found');
     } else {
         $nav_item = array();
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -30,16 +30,17 @@ if ($num > 0) {
                 'id' => $id,
                 'name' => $name,
                 'path' => $path,
-                'exact' => $exact
+                'exact' => $exact,
+                'component' => $component
             );
             array_push($navData, $nav_item);
         }
 
-        $returnData = msg(1, 200, $navData);
+        $returnData = $nav->msg(1, 200, $navData);
 
         echo json_encode($returnData);
     }
 } else {
-    $returnData = msg(0, 404, 'No results found.');
+    $returnData = $nav->msg(0, 404, 'No results found.');
     json_encode($returnData);
 }
