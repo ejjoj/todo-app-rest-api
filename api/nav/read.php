@@ -21,6 +21,7 @@ if ($num > 0) {
 
     if ($_SERVER['REQUEST_METHOD'] != 'GET') {
         $returnData = $nav->msg(0, 404, 'Page not found');
+        echo json_encode($returnData);
     } else {
         $nav_item = array();
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {

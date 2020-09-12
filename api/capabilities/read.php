@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 include_once '../../config/Database.php';
-include_once '../../models/Nav.php';
+include_once '../../models/Capabilities.php';
 
 $database = new Database();
 $db = $database->connect();
@@ -19,12 +19,13 @@ if ($num > 0) {
     $capData = array();
 
     if ($_SERVER['REQUEST_METHOD'] != 'GET') {
-        $returnData = $nav->msg(0, 404, 'Page not found');
+        $returnData = $cap->msg(0, 404, 'Page not found');
+        echo json_encode($returnData);
     } else {
         $capItem = array();
-
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
+
             $capItem = array(
                 'id' => $id,
                 'name' => $name,
@@ -32,11 +33,11 @@ if ($num > 0) {
             );
             array_push($capData, $capItem);
         }
-        $returnData = $cap->msg(1, 200, $capData);
 
-        json_encode($returnData);
+        $returnData = $cap->msg(1, 200, $capData);
+        echo json_encode($returnData);
     }
 } else {
-    $returnData = $nav->msg(0, 404, 'No results found.');
-    json_encode($returnData);
+    $returnData = $cap->msg(0, 404, 'No results found.');
+    echo json_encode($returnData);
 }

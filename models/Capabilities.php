@@ -2,7 +2,7 @@
 
 class Capabilities {
     private $conn;
-    private $table;
+    private $table = 'capabilities';
 
     public $id;
     public $name;
@@ -17,9 +17,9 @@ class Capabilities {
         return $this->table;
     }
 
-    public function msg($succes, $status, $body, $extra = []) {
+    public function msg($success, $status, $body, $extra = []) {
         return array_merge([
-            'succes' => $succes,
+            'success' => $success,
             'status' => $status,
             'body' => $body
         ], $extra);
