@@ -1,8 +1,8 @@
 <?php
-require __DIR__ . '../jwt/JWT.php';
-require __DIR__ . '../jwt/ExpiredException.php';
-require __DIR__ . '../jwt/SignatureInvalidException.php';
-require __DIR__ . '../jwt/BeforeValidException.php';
+require __DIR__ . '/../jwt/JWT.php';
+require __DIR__ . '/../jwt/ExpiredException.php';
+require __DIR__ . '/../jwt/SignatureInvalidException.php';
+require __DIR__ . '/../jwt/BeforeValidException.php';
 
 use \Firebase\JWT\JWT;
 
