@@ -42,13 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
        $returnData = msg(0, 422, 'Your password must contain more than 8 characters!');
    else {
        try {
-           $fetchUserByID = 'SELECT * FROM `users` WHERE `login`= ' . $login;
+           $fetchUserByID = 'SELECT * FROM `users` WHERE `user_name`= "' . $login . '"';
            $queryStmt = $conn->prepare($fetchUserByID);
            $queryStmt->execute();
 
            if ($queryStmt->rowCount()) {
                $row = $queryStmt->fetch(PDO::FETCH_ASSOC);
-               $checkPassword = password_verify($password, $row['password']);
+               $checkPassword = password_verify($password, $row['user_pass']);
 
                if ($checkPassword) {
                    $jwt = new JwtHandler();
